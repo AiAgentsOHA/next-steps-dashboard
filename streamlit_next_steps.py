@@ -1,11 +1,10 @@
 """
 OceanHub OH7 Next Steps Action Board - Streamlit Dashboard
-Embeds the validated pipeline outreach dashboard with Gmail integration.
-
-Run with: streamlit run streamlit_next_steps.py
+Run: streamlit run streamlit_next_steps.py
 """
 import streamlit as st
 import streamlit.components.v1 as components
+import os
 
 st.set_page_config(
     page_title="OceanHub OH7 | Next Steps",
@@ -29,24 +28,21 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Read the HTML file
-try:
-    with open('oceanhub_next_steps.html', 'r', encoding='utf-8') as f:
-        html_content = f.read()
-except FileNotFoundError:
-    # Fallback: try alternate path
-    try:
-        with open('/home/claude/oceanhub_next_steps.html', 'r', encoding='utf-8') as f:
-            html_content = f.read()
-    except FileNotFoundError:
-        html_content = """
-        <html>
-        <body style="background:#030712;color:#fff;font-family:sans-serif;padding:40px;text-align:center;">
-        <h1>⚠️ Dashboard HTML not found</h1>
-        <p>Please ensure oceanhub_next_steps.html is in the same directory as this script.</p>
-        </body>
-        </html>
-        """
+# Find HTML file
+html_paths = [
+    'oceanhub_next_steps_complete.html',
+    '/home/claude/oceanhub_next_steps_complete.html',
+    '/mnt/user-data/outputs/oceanhub_next_steps_complete.html'
+]
 
-# Render the HTML dashboard
-components.html(html_content, height=2000, scrolling=True)
+html_content = None
+for p in html_paths:
+    if os.path.exists(p):
+        with open(p, 'r', encoding='utf-8') as f:
+            html_content = f.read()
+        break
+
+if html_content:
+    components.html(html_content, height=2500, scrolling=True)
+else:
+    st.error("Dashboard HTML not found. Place oceanhub_next_steps_complete.html in the same directory.")

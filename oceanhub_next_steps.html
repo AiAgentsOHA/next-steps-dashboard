@@ -9,7 +9,7 @@
         :root {
             --abyss: #030712; --deep: #0c1929; --ocean: #0f2847; --surface: #164e63;
             --foam: #22d3ee; --emerald: #10b981; --emerald-bright: #34d399;
-            --coral: #f97316; --amber: #f59e0b; --rose: #f43f5e;
+            --coral: #f97316; --amber: #f59e0b; --rose: #f43f5e; --violet: #8b5cf6;
             --white: #f8fafc; --mist: #cbd5e1; --steel: #64748b; --slate: #334155;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,19 +29,21 @@
         .tab-btn .count { margin-left: 6px; padding: 2px 7px; background: rgba(0,0,0,0.2); border-radius: 100px; font-size: 0.65rem; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 36px; }
         .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 18px; position: relative; }
         .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 12px 12px 0 0; }
         .stat-card.coral::before { background: linear-gradient(90deg, var(--coral), #fb923c); }
         .stat-card.emerald::before { background: linear-gradient(90deg, var(--emerald), var(--emerald-bright)); }
         .stat-card.foam::before { background: linear-gradient(90deg, var(--surface), var(--foam)); }
         .stat-card.amber::before { background: linear-gradient(90deg, var(--amber), #fcd34d); }
+        .stat-card.violet::before { background: linear-gradient(90deg, var(--violet), #a78bfa); }
         .stat-label { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--steel); margin-bottom: 6px; }
         .stat-value { font-family: 'Newsreader', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; }
         .stat-card.coral .stat-value { color: #fb923c; }
         .stat-card.emerald .stat-value { color: var(--emerald-bright); }
         .stat-card.foam .stat-value { color: var(--foam); }
         .stat-card.amber .stat-value { color: var(--amber); }
+        .stat-card.violet .stat-value { color: #a78bfa; }
         .stat-sub { font-size: 0.7rem; color: var(--mist); margin-top: 5px; }
         .section-header { display: flex; align-items: center; justify-content: space-between; margin: 28px 0 14px; }
         .section-title { display: flex; align-items: center; gap: 10px; }
@@ -50,6 +52,7 @@
         .section-icon.emerald { background: rgba(16,185,129,0.2); }
         .section-icon.foam { background: rgba(34,211,238,0.2); }
         .section-icon.amber { background: rgba(245,158,11,0.2); }
+        .section-icon.violet { background: rgba(139,92,246,0.2); }
         h2 { font-family: 'Newsreader', serif; font-size: 1.15rem; font-weight: 600; }
         .section-count { font-size: 0.7rem; padding: 3px 9px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--mist); }
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
@@ -57,6 +60,7 @@
         .startup-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
         .startup-card.urgent { border-color: rgba(244,63,94,0.4); background: linear-gradient(135deg, rgba(244,63,94,0.08), transparent); }
         .startup-card.highlight { border-color: rgba(16,185,129,0.4); background: linear-gradient(135deg, rgba(16,185,129,0.08), transparent); }
+        .startup-card.pipeline { border-color: rgba(139,92,246,0.4); background: linear-gradient(135deg, rgba(139,92,246,0.08), transparent); }
         .startup-card.contacted { opacity: 0.45; }
         .startup-card.contacted .action-btn { display: none; }
         .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; gap: 8px; }
@@ -66,14 +70,19 @@
         .badge-strong { background: rgba(34,211,238,0.25); color: var(--foam); }
         .badge-progress { background: rgba(249,115,22,0.25); color: #fb923c; }
         .badge-submit { background: rgba(244,63,94,0.3); color: #fb7185; }
+        .badge-pipeline { background: rgba(139,92,246,0.25); color: #a78bfa; }
+        .badge-interested { background: rgba(245,158,11,0.25); color: var(--amber); }
         .badge-contacted { background: rgba(100,116,139,0.3); color: var(--steel); }
         .card-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
         .meta-tag { font-size: 0.65rem; color: var(--steel); background: rgba(255,255,255,0.04); padding: 2px 7px; border-radius: 4px; }
+        .meta-tag.warn { color: var(--amber); }
+        .meta-tag.info { color: var(--foam); }
         .progress-bar { margin: 8px 0; }
         .progress-track { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
         .progress-fill { height: 100%; border-radius: 2px; }
         .progress-fill.high { background: linear-gradient(90deg, var(--emerald), var(--emerald-bright)); }
         .progress-fill.medium { background: linear-gradient(90deg, var(--coral), #fb923c); }
+        .progress-fill.low { background: linear-gradient(90deg, var(--amber), #fcd34d); }
         .card-actions { display: flex; gap: 6px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
         .action-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 8px 10px; border: none; border-radius: 6px; font-family: inherit; font-size: 0.7rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; }
         .action-btn.primary { background: linear-gradient(135deg, var(--foam), var(--surface)); color: var(--abyss); }
@@ -89,6 +98,7 @@
         .nav-btn .count { background: rgba(255,255,255,0.15); padding: 2px 5px; border-radius: 100px; font-size: 0.6rem; margin-left: 4px; }
         .no-email { opacity: 0.5; }
         .no-email .action-btn { background: var(--slate); cursor: not-allowed; }
+        @media (max-width: 1100px) { .summary-grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 900px) { .summary-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } .cards-grid { grid-template-columns: 1fr; } .floating-nav { flex-wrap: wrap; width: calc(100% - 32px); justify-content: center; } header { flex-direction: column; align-items: flex-start; } }
     </style>
@@ -106,12 +116,12 @@
             </div>
             <div class="header-meta">
                 <div class="date">January 9, 2026</div>
-                <div class="status-pill" id="pending-count">32 Actions Pending</div>
+                <div class="status-pill" id="pending-count">42 Actions Pending</div>
             </div>
         </header>
 
         <div class="tabs">
-            <button class="tab-btn active" data-tab="pending">📋 Pending <span class="count" id="tab-pending">32</span></button>
+            <button class="tab-btn active" data-tab="pending">📋 Pending <span class="count" id="tab-pending">42</span></button>
             <button class="tab-btn" data-tab="contacted">✅ Contacted <span class="count" id="tab-contacted">0</span></button>
         </div>
 
@@ -120,6 +130,7 @@
                 <div class="stat-card coral"><div class="stat-label">🚨 Just Submit</div><div class="stat-value">3</div><div class="stat-sub">100% complete</div></div>
                 <div class="stat-card emerald"><div class="stat-label">⭐ Definitely OH7</div><div class="stat-value">4</div><div class="stat-sub">Pipeline priority</div></div>
                 <div class="stat-card foam"><div class="stat-label">💪 Strong Candidates</div><div class="stat-value">9</div><div class="stat-sub">Pipeline priority</div></div>
+                <div class="stat-card violet"><div class="stat-label">🔮 Pipeline Started</div><div class="stat-value">10</div><div class="stat-sub">From scouting DB</div></div>
                 <div class="stat-card amber"><div class="stat-label">⏳ Almost Complete</div><div class="stat-value">16</div><div class="stat-sub">70-99% progress</div></div>
             </div>
 
@@ -191,7 +202,7 @@
                     <div class="startup-card no-email" data-id="greatlakes">
                         <div class="card-header"><span class="startup-name">Great Lakes Feeds</span><span class="startup-badge badge-definitely">Definitely OH7</span></div>
                         <div class="card-meta"><span class="meta-tag">👤 Mathildah Amollo</span><span class="meta-tag">📍 Kenya</span><span class="meta-tag">🌊 Sustainable Resources</span></div>
-                        <div class="card-meta"><span class="meta-tag" style="color:var(--amber)">📱 +254 726 787774 (Phone only)</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">📱 +254 726 787774 (Phone only)</span></div>
                         <div class="card-actions">
                             <a href="tel:+254726787774" class="action-btn secondary" onclick="markContacted('greatlakes')">📞 Call</a>
                             <a href="https://wa.me/254726787774?text=Hi%20Mathildah%2C%20we%E2%80%99re%20reaching%20out%20from%20OceanHub.%20We%E2%80%99d%20love%20to%20invite%20Great%20Lakes%20Feeds%20to%20apply%20for%20our%20OH7%20Accelerator.%20Would%20you%20be%20interested%3F" target="_blank" class="action-btn primary" onclick="markContacted('greatlakes')">💬 WhatsApp</a>
@@ -289,11 +300,117 @@
                 </div>
             </section>
 
+            <!-- PIPELINE STARTED BUT INCOMPLETE (NEW SECTION - 10 startups) -->
+            <section id="pipeline">
+                <div class="section-header"><div class="section-title"><div class="section-icon violet">🔮</div><h2>Pipeline Started — Didn't Finish Application</h2></div><span class="section-count">10</span></div>
+                <div class="cards-grid">
+                    <div class="startup-card pipeline" data-id="furies">
+                        <div class="card-header"><span class="startup-name">Furies Enterprise</span><span class="startup-badge badge-progress">97.3%</span></div>
+                        <div class="card-meta"><span class="meta-tag info">🔮 Scouting DB</span><span class="meta-tag warn">⚡ Final question!</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 veramichael2000@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill high" style="width:97.3%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=veramichael2000@gmail.com&su=Just%20One%20Question%20Left%20on%20Your%20OH7%20Application!&body=Hi%20there%2C%0A%0AYou%E2%80%99re%2097%25%20done%20with%20your%20OceanHub%20OH7%20application%20%E2%80%94%20just%20one%20question%20left!%0A%0ACan%20you%20log%20back%20in%20and%20finish%20it%20today%3F%20We%E2%80%99d%20love%20to%20have%20Furies%20Enterprise%20in%20the%20program.%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('furies')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="setetemela">
+                        <div class="card-header"><span class="startup-name">Setetemela Industries</span><span class="startup-badge badge-interested">They're Interested!</span></div>
+                        <div class="card-meta"><span class="meta-tag info">🔮 35.1%</span><span class="meta-tag warn">⚡ Founder Structure</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 setetemelaindustries@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:35.1%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=setetemelaindustries@gmail.com&su=Need%20Help%20Completing%20Your%20OceanHub%20Application%3F&body=Hi%20there%2C%0A%0AWe%20noticed%20you%20started%20your%20OceanHub%20OH7%20application%20but%20got%20stuck%20at%20the%20founder%20structure%20section.%0A%0ACan%20we%20help%20you%20finish%3F%20We%E2%80%99re%20really%20interested%20in%20having%20Setetemela%20Industries%20in%20the%20program.%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('setetemela')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="ecotech">
+                        <div class="card-header"><span class="startup-name">Ecotech Naturewise</span><span class="startup-badge badge-pipeline">45.9%</span></div>
+                        <div class="card-meta"><span class="meta-tag info">🔮 Contacted</span><span class="meta-tag warn">⚡ Pitch Video</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 rugendo@ecotechnature.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:45.9%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rugendo@ecotechnature.com&su=Stuck%20on%20the%20Pitch%20Video%3F&body=Hi%20there%2C%0A%0AWe%20noticed%20you%20stopped%20at%20the%20pitch%20video%20question%20in%20your%20OH7%20application.%0A%0AThe%20pitch%20video%20doesn%E2%80%99t%20need%20to%20be%20perfect%20%E2%80%94%20we%20just%20want%20to%20hear%20about%20your%20startup%20in%20your%20own%20words.%0A%0ACan%20we%20help%20you%20finish%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('ecotech')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="terraverge">
+                        <div class="card-header"><span class="startup-name">TerraVerge Solutions</span><span class="startup-badge badge-pipeline">45.9%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Pitch Video</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 rodneykimathi1@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:45.9%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rodneykimathi1@gmail.com&su=Stuck%20on%20the%20Pitch%20Video%3F&body=Hi%20there%2C%0A%0AWe%20noticed%20you%20stopped%20at%20the%20pitch%20video%20question.%20Many%20applicants%20find%20this%20tricky!%0A%0AThe%20video%20doesn%E2%80%99t%20need%20to%20be%20perfect%20%E2%80%94%20we%20just%20want%20to%20hear%20about%20your%20startup.%0A%0ACan%20we%20help%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('terraverge')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="origenes">
+                        <div class="card-header"><span class="startup-name">OriGenes</span><span class="startup-badge badge-pipeline">45.9%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Pitch Video</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 ali@origenes.bio</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:45.9%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ali@origenes.bio&su=Stuck%20on%20the%20Pitch%20Video%3F&body=Hi%20Ali%2C%0A%0AWe%20noticed%20you%20stopped%20at%20the%20pitch%20video%20question.%0A%0AThe%20video%20doesn%E2%80%99t%20need%20to%20be%20perfect%20%E2%80%94%20can%20we%20help%20you%20finish%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('origenes')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="manman">
+                        <div class="card-header"><span class="startup-name">MANMAN L'OCEAN</span><span class="startup-badge badge-pipeline">48.6%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Post-video</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 coco.1000@live.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:48.6%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=coco.1000@live.com&su=Complete%20Your%20OceanHub%20OH7%20Application&body=Hi%20there%2C%0A%0AYou%27re%20almost%20halfway%20through%20your%20OH7%20application!%0A%0ACan%20you%20finish%20it%3F%20We%E2%80%99d%20love%20to%20review%20your%20startup.%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('manman')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="trident">
+                        <div class="card-header"><span class="startup-name">Trident Analitics</span><span class="startup-badge badge-pipeline">43.2%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Ocean Focus</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 elizabethgakinya@tridentanalitics.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:43.2%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=elizabethgakinya@tridentanalitics.com&su=Complete%20Your%20OceanHub%20OH7%20Application&body=Hi%20Elizabeth%2C%0A%0AYou%27re%20about%20halfway%20through%20your%20OH7%20application!%0A%0ACan%20you%20finish%20it%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('trident')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="madafia">
+                        <div class="card-header"><span class="startup-name">MADA-FIA</span><span class="startup-badge badge-pipeline">43.2%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Ocean Focus</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 nandrianinamaminah@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:43.2%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nandrianinamaminah@gmail.com&su=Complete%20Your%20OceanHub%20OH7%20Application&body=Hi%20there%2C%0A%0AYou%27re%20about%20halfway%20through%20your%20OH7%20application!%0A%0ACan%20you%20finish%20it%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('madafia')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="mofilet">
+                        <div class="card-header"><span class="startup-name">Mofilet</span><span class="startup-badge badge-pipeline">29.7%</span></div>
+                        <div class="card-meta"><span class="meta-tag">👤 Khadija Habyby</span><span class="meta-tag warn">⚡ Registration</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 khadija.habyby07@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:29.7%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=khadija.habyby07@gmail.com&su=Finish%20Your%20OceanHub%20OH7%20Application&body=Hi%20Khadija%2C%0A%0AWe%20noticed%20you%20started%20your%20OH7%20application%20but%20didn%27t%20finish.%0A%0ACan%20we%20help%20you%20complete%20it%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('mofilet')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                    <div class="startup-card pipeline" data-id="kitronic">
+                        <div class="card-header"><span class="startup-name">Kitronic Store</span><span class="startup-badge badge-pipeline">18.9%</span></div>
+                        <div class="card-meta"><span class="meta-tag warn">⚡ Personal Info</span></div>
+                        <div class="card-meta"><span class="meta-tag">📧 kayklyamba@gmail.com</span></div>
+                        <div class="progress-bar"><div class="progress-track"><div class="progress-fill low" style="width:18.9%"></div></div></div>
+                        <div class="card-actions">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kayklyamba@gmail.com&su=Finish%20Your%20OceanHub%20OH7%20Application&body=Hi%20there%2C%0A%0AWe%20noticed%20you%20started%20your%20OH7%20application%20but%20didn%27t%20finish.%0A%0ACan%20we%20help%20you%20complete%20it%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('kitronic')">📧 Open Gmail</a>
+                        </div>
+                        <div class="contacted-badge">✓ Email Drafted</div>
+                    </div>
+                </div>
+            </section>
+
             <!-- ALMOST COMPLETE (70-99%) -->
             <section id="almost">
                 <div class="section-header"><div class="section-title"><div class="section-icon amber">⏳</div><h2>Almost Complete — 70-99% Progress</h2></div><span class="section-count">16</span></div>
                 <div class="cards-grid">
-                    <div class="startup-card" data-id="furies"><div class="card-header"><span class="startup-name">Furies Enterprise</span><span class="startup-badge badge-progress">97.3%</span></div><div class="card-meta"><span class="meta-tag">📧 veramichael2000@gmail.com</span></div><div class="progress-bar"><div class="progress-track"><div class="progress-fill high" style="width:97.3%"></div></div></div><div class="card-actions"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=veramichael2000@gmail.com&su=You%E2%80%99re%2097%25%20Done%20%E2%80%94%20Just%201%20Question%20Left!&body=Hi%20there%2C%0A%0AYou%E2%80%99re%20SO%20close%20to%20completing%20your%20OceanHub%20OH7%20application%20%E2%80%94%20just%2097%25%20done!%0A%0ACan%20you%20log%20back%20in%20and%20finish%20it%20today%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('furies')">📧 Open Gmail</a></div><div class="contacted-badge">✓ Sent</div></div>
                     <div class="startup-card" data-id="aquapilote"><div class="card-header"><span class="startup-name">Aquapilote</span><span class="startup-badge badge-progress">97.3%</span></div><div class="card-meta"><span class="meta-tag">📧 komisenaa1@gmail.com</span></div><div class="progress-bar"><div class="progress-track"><div class="progress-fill high" style="width:97.3%"></div></div></div><div class="card-actions"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=komisenaa1@gmail.com&su=You%E2%80%99re%2097%25%20Done%20%E2%80%94%20Almost%20There!&body=Hi%20there%2C%0A%0AYou%E2%80%99re%20SO%20close%20to%20completing%20your%20OceanHub%20OH7%20application!%0A%0ACan%20you%20log%20back%20in%20and%20finish%20it%20today%3F%0A%0ABest%20regards%2C%0AThe%20OceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('aquapilote')">📧 Open Gmail</a></div><div class="contacted-badge">✓ Sent</div></div>
                     <div class="startup-card" data-id="mas"><div class="card-header"><span class="startup-name">Mas Technologies</span><span class="startup-badge badge-progress">94.6%</span></div><div class="card-meta"><span class="meta-tag">📧 rugambaallan@gmail.com</span></div><div class="progress-bar"><div class="progress-track"><div class="progress-fill high" style="width:94.6%"></div></div></div><div class="card-actions"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=rugambaallan@gmail.com&su=You%E2%80%99re%2095%25%20Done%20%E2%80%94%20Almost%20There!&body=Hi%20there%2C%0A%0AYou%E2%80%99re%20almost%20done%20with%20your%20OceanHub%20OH7%20application!%0A%0ACan%20you%20finish%20it%20today%3F%0A%0ABest%2C%0AOceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('mas')">📧 Open Gmail</a></div><div class="contacted-badge">✓ Sent</div></div>
                     <div class="startup-card" data-id="obote"><div class="card-header"><span class="startup-name">Obote Mixed Farm</span><span class="startup-badge badge-progress">94.6%</span></div><div class="card-meta"><span class="meta-tag">📧 obotetom009@gmail.com</span></div><div class="progress-bar"><div class="progress-track"><div class="progress-fill high" style="width:94.6%"></div></div></div><div class="card-actions"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=obotetom009@gmail.com&su=You%E2%80%99re%2095%25%20Done!&body=Hi%20there%2C%0A%0AYou%E2%80%99re%20almost%20done%20with%20your%20OceanHub%20OH7%20application!%0A%0ACan%20you%20finish%20it%20today%3F%0A%0ABest%2C%0AOceanHub%20Team" target="_blank" class="action-btn primary" onclick="markContacted('obote')">📧 Open Gmail</a></div><div class="contacted-badge">✓ Sent</div></div>
@@ -323,11 +440,13 @@
         <a href="#submit" class="nav-btn">🚨 Submit<span class="count">3</span></a>
         <a href="#definitely" class="nav-btn">⭐ Definitely<span class="count">4</span></a>
         <a href="#strong" class="nav-btn">💪 Strong<span class="count">9</span></a>
+        <a href="#pipeline" class="nav-btn">🔮 Pipeline<span class="count">10</span></a>
         <a href="#almost" class="nav-btn">⏳ Almost<span class="count">16</span></a>
     </nav>
 
     <script>
-        let contacted = JSON.parse(localStorage.getItem('oh7_contacted_v2') || '[]');
+        const TOTAL = 42;
+        let contacted = JSON.parse(localStorage.getItem('oh7_contacted_v4') || '[]');
         
         function applyState() {
             contacted.forEach(id => {
@@ -351,7 +470,7 @@
         function markContacted(id) {
             if (!contacted.includes(id)) {
                 contacted.push(id);
-                localStorage.setItem('oh7_contacted_v2', JSON.stringify(contacted));
+                localStorage.setItem('oh7_contacted_v4', JSON.stringify(contacted));
                 const card = document.querySelector(`[data-id="${id}"]`);
                 if (card) {
                     card.classList.add('contacted');
@@ -362,7 +481,7 @@
         }
         
         function updateCounts() {
-            const pending = 32 - contacted.length;
+            const pending = TOTAL - contacted.length;
             document.getElementById('pending-count').textContent = pending + ' Actions Pending';
             document.getElementById('tab-pending').textContent = pending;
             document.getElementById('tab-contacted').textContent = contacted.length;
